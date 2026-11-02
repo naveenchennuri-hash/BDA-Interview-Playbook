@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: bda-hiring-hub
+    runtime: static
+    buildCommand: echo "static site"
+    staticPublishPath: .
+    headers:
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=3600
+      - path: /prep_pages/*
+        name: Cache-Control
+        value: public, max-age=86400
