@@ -32,5 +32,26 @@
     if(i.checked&&+i.dataset.done<N)show(+i.dataset.done+1);
   });
   var r=$('#preset');if(r)r.addEventListener('click',function(){save([]);paint();show(1)});
+  function view(v){
+    if(['home','candidate','interviewer'].indexOf(v)<0)v='home';
+    $$('.view').forEach(function(x){x.hidden=x.id!=='v-'+v});
+    $$('nav a.l').forEach(function(a){a.classList.toggle('on',a.dataset.view===v)});
+    window.scrollTo(0,0);
+  }
+  function route(){
+    var h=(location.hash||'').replace('#','');
+    if(/^pg\d$/.test(h)){
+      if($('#v-candidate').hidden)view('candidate');
+      var el=document.getElementById(h);if(el)el.scrollIntoView();
+      return;
+    }
+    view(h);
+  }
+  window.addEventListener('hashchange',route);
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a[data-view]');
+    if(a&&a.dataset.view==='home'){e.preventDefault();history.pushState(null,'',location.pathname);view('home')}
+  });
+  route();
   if($('.stage')){paint();show(1)}
 })();

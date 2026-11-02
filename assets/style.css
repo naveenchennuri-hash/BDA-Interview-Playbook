@@ -99,3 +99,5 @@ ul.n{margin:6px 0;padding-left:22px}ul.n li{margin:4px 0}
 .card p{color:var(--muted);font-size:15px}
 .card .go{display:inline-block;margin-top:10px;font-weight:600;color:var(--ink)}
 @media print{nav,.nav2,.markdone,.progress,.stepper,.subtabs{display:none}.stage[hidden]{display:block}.subpanel[hidden]{display:block}body{background:#fff;color:#000}}
+.view[hidden]{display:none}
+.card .go{display:inline-block;margin-top:10px;font-weight:600}
